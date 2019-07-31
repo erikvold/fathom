@@ -1,0 +1,625 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Rule and Ruleset Reference &mdash; Fathom 3.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/tweaks.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Fathom 3.1 documentation" href="index.html"/>
+        <link rel="next" title="Clustering" href="clustering.html"/>
+        <link rel="prev" title="Training" href="training.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Fathom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Basic Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Training</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Rule and Ruleset Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rulesets">Rulesets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rules">Rules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#left-hand-sides">Left-hand Sides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#right-hand-sides">Right-hand Sides</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clustering.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fnodes.html">Fnode Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utility Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">Version History</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Fathom</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Rule and Ruleset Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ruleset.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rule-and-ruleset-reference">
+<h1>Rule and Ruleset Reference<a class="headerlink" href="#rule-and-ruleset-reference" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rulesets">
+<h2>Rulesets<a class="headerlink" href="#rulesets" title="Permalink to this headline">¶</a></h2>
+<p>The top-level Fathom object is the ruleset, an unordered collection of rules. The plain old <a class="reference internal" href="#Ruleset" title="Ruleset"><code class="xref js js-class docutils literal"><span class="pre">Ruleset()</span></code></a> is what you typically construct, via the <code class="docutils literal"><span class="pre">ruleset</span></code> convenience function:</p>
+<dl class="function">
+<dt id="ruleset">
+<code class="descname">ruleset</code><span class="sig-paren">(</span><em>rules</em>, <em>coeffs</em>, <em>biases</em><span class="sig-paren">)</span><a class="headerlink" href="#ruleset" title="Permalink to this definition">¶</a></dt>
+<dd><p>A shortcut for creating a new <a class="reference internal" href="#Ruleset" title="Ruleset"><code class="xref js js-class docutils literal"><span class="pre">Ruleset()</span></code></a>, for symmetry with
+<a class="reference internal" href="#rule" title="rule"><code class="xref js js-func docutils literal"><span class="pre">rule()</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Ruleset">
+<em class="property">class </em><code class="descname">Ruleset</code><span class="sig-paren">(</span><em>rules</em>, <em>coeffs</em>, <em>biases</em><span class="sig-paren">)</span><a class="headerlink" href="#Ruleset" title="Permalink to this definition">¶</a></dt>
+<dd><p>An unbound ruleset. Eventually, you&#8217;ll be able to add rules to these. Then,
+when you bind them by calling <code class="xref js js-func docutils literal"><span class="pre">against()</span></code>, the resulting
+<a class="reference internal" href="#BoundRuleset" title="BoundRuleset"><code class="xref js js-class docutils literal"><span class="pre">BoundRuleset()</span></code></a> will be immutable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
+<li><strong>rules</strong> (<em>Array</em>) &#8211; Rules returned from <a class="reference internal" href="#rule" title="rule"><code class="xref js js-func docutils literal"><span class="pre">rule()</span></code></a></li>
+<li><strong>coeffs</strong> (<em>Map</em>) &#8211; A map of rule names to numerical weights, typically returned by the <a class="reference internal" href="training.html"><span class="doc">trainer</span></a>. Example: <code class="docutils literal"><span class="pre">[['someRuleName',</span> <span class="pre">5.04],</span> <span class="pre">...]</span></code>. If not given, coefficients default to 1.</li>
+<li><strong>biases</strong> (<em>object</em>) &#8211; A map of type names to neural-net biases. These enable accurate confidence estimates. Example: <code class="docutils literal"><span class="pre">[['someType',</span> <span class="pre">-2.08],</span> <span class="pre">...]</span></code>. If absent, biases default to 0.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="against">
+<code class="descname">against</code><span class="sig-paren">(</span><em>doc</em><span class="sig-paren">)</span><a class="headerlink" href="#against" title="Permalink to this definition">¶</a></dt>
+<dd><p>Commit this ruleset to running against a specific DOM tree.</p>
+<p>This doesn&#8217;t actually modify the Ruleset but rather returns a fresh
+BoundRuleset, which contains caches and other stateful, per-DOM
+bric-a-brac.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rules">
+<code class="descname">rules</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all the rules (both inward and outward) that make up this ruleset.</p>
+<p>From this, you can construct another ruleset like this one but with your
+own rules added.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>Then you call <code class="xref js js-func docutils literal"><span class="pre">Ruleset.against()</span></code> to get back a <a class="reference internal" href="#BoundRuleset" title="BoundRuleset"><code class="xref js js-class docutils literal"><span class="pre">BoundRuleset()</span></code></a>, which is specific to a given DOM tree. From that, you pull answers.</p>
+<dl class="class">
+<dt id="BoundRuleset">
+<em class="property">class </em><code class="descname">BoundRuleset</code><span class="sig-paren">(</span><em>doc</em>, <em>inRules</em>, <em>outRules</em>, <em>rulesThatCouldEmit</em>, <em>rulesThatCouldAdd</em>, <em>coeffs</em>, <em>biases</em><span class="sig-paren">)</span><a class="headerlink" href="#BoundRuleset" title="Permalink to this definition">¶</a></dt>
+<dd><p>A ruleset that is earmarked to analyze a certain DOM</p>
+<p>Carries a cache of rule results on that DOM. Typically comes from
+<code class="xref js js-func docutils literal"><span class="pre">Ruleset.against()</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
+<li><strong>inRules</strong> (<em>Array</em>) &#8211; Non-out() rules</li>
+<li><strong>outRules</strong> (<em>Map</em>) &#8211; Output key -&gt; out() rule</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="function">
+<dt id="get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>thing</em><span class="sig-paren">)</span><a class="headerlink" href="#get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an array of zero or more fnodes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
+<li><strong>thing</strong> (<em>string|Lhs|Node</em>) &#8211; Can be...  * A string which matches up with an &#8220;out&#8221; rule in the ruleset. If the out rule uses through(), the results of through&#8217;s callback (which might not be fnodes) will be returned. * An arbitrary LHS which we calculate and return the results of * A DOM node, for which we will return the corresponding fnode  Results are cached in the first and third cases.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="rules">
+<h2>Rules<a class="headerlink" href="#rules" title="Permalink to this headline">¶</a></h2>
+<p>These are the control structures which govern the flow of scores, types, and notes through a ruleset. You construct a rule by calling <a class="reference internal" href="#rule" title="rule"><code class="xref js js-func docutils literal"><span class="pre">rule()</span></code></a> and passing it a left-hand side and a right-hand side:</p>
+<dl class="function">
+<dt id="rule">
+<code class="descname">rule</code><span class="sig-paren">(</span><em>lhs</em>, <em>rhs</em>, <em>options</em><span class="sig-paren">)</span><a class="headerlink" href="#rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct and return the proper type of rule class based on the
+inwardness/outwardness of the RHS.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
+<li><strong>lhs</strong> (<em>Lhs</em>) &#8211; The left-hand side of the rule</li>
+<li><strong>rhs</strong> (<em>Rhs</em>) &#8211; The right-hand side of the rule</li>
+<li><strong>options</strong> (<em>object</em>) &#8211; Other, optional information about the rule. Currently, the only recognized option is <code class="docutils literal"><span class="pre">name</span></code>, which points to a string that uniquely identifies this rule in a ruleset. The name correlates this rule with one of the coefficients passed into <a class="reference internal" href="#ruleset" title="ruleset"><code class="xref js js-func docutils literal"><span class="pre">ruleset()</span></code></a>. If no name is given, an identifier is assigned based on the index of this rule in the ruleset, but that is, of course, brittle.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="left-hand-sides">
+<h3>Left-hand Sides<a class="headerlink" href="#left-hand-sides" title="Permalink to this headline">¶</a></h3>
+<p>Left-hand sides are currently a few special forms which select nodes to be fed to right-hand sides.</p>
+<dl class="function">
+<dt id="dom">
+<code class="descname">dom</code><span class="sig-paren">(</span><em>selector</em><span class="sig-paren">)</span><a class="headerlink" href="#dom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take nodes that match a given DOM selector. Example:
+<code class="docutils literal"><span class="pre">dom('meta[property=&quot;og:title&quot;]')</span></code></p>
+<p>Every ruleset has at least one <code class="docutils literal"><span class="pre">dom</span></code> rule, as that is where nodes begin to
+flow into the system.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="type">
+<code class="descname">type</code><span class="sig-paren">(</span><em>theType</em><span class="sig-paren">)</span><a class="headerlink" href="#type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take nodes that have the given type. Example: <code class="docutils literal"><span class="pre">type('titley')</span></code></p>
+<dl class="function">
+<dt id="max">
+<code class="descname">max</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Of the nodes selected by a <code class="docutils literal"><span class="pre">type</span></code> call to the left, constrain the LHS
+to return only the max-scoring one. If there is a tie, more than 1 node
+will be returned. Example: <code class="docutils literal"><span class="pre">type('titley').max()</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bestCluster">
+<code class="descname">bestCluster</code><span class="sig-paren">(</span><em>options</em><span class="sig-paren">)</span><a class="headerlink" href="#bestCluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the nodes selected by a <code class="docutils literal"><span class="pre">type</span></code> call to the left, group them into
+clusters, and return the nodes in the cluster that has the highest total
+score (on the relevant type).</p>
+<p>Nodes come out in arbitrary order, so, if you plan to emit them,
+consider using <code class="docutils literal"><span class="pre">.out('whatever').allThrough(domSort)</span></code>. See
+<a class="reference internal" href="utilities.html#domSort" title="domSort"><code class="xref js js-func docutils literal"><span class="pre">domSort()</span></code></a>.</p>
+<p>If multiple clusters have equally high scores, return an arbitrary one,
+because Fathom has no way to represent arrays of arrays in rulesets.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
+<li><strong>options</strong> (<em>Object</em>) &#8211; The same depth costs taken by <a class="reference internal" href="clustering.html#distance" title="distance"><code class="xref js js-func docutils literal"><span class="pre">distance()</span></code></a>, plus <code class="docutils literal"><span class="pre">splittingDistance</span></code>, which is the distance beyond which 2 clusters will be considered separate. <code class="docutils literal"><span class="pre">splittingDistance</span></code>, if omitted, defaults to 3.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="and">
+<code class="descname">and</code><span class="sig-paren">(</span><em>typeCall</em><span class="optional">[</span>, <em>typeCall</em>, <em>...</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#and" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pull nodes that conform to multiple conditions at once.</p>
+<p>For example: <code class="docutils literal"><span class="pre">and(type('title'),</span> <span class="pre">type('english'))</span></code></p>
+<p>Caveats: <code class="docutils literal"><span class="pre">and</span></code> supports only simple <code class="docutils literal"><span class="pre">type</span></code> calls as arguments for now,
+and it may fire off more rules as prerequisites than strictly necessary.
+<code class="docutils literal"><span class="pre">not</span></code> and <code class="docutils literal"><span class="pre">or</span></code> don&#8217;t exist yet, but you can express <code class="docutils literal"><span class="pre">or</span></code> the long way
+around by having 2 rules with identical RHSs.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nearest">
+<code class="descname">nearest</code><span class="sig-paren">(</span><em>typeCallA</em>, <em>typeCallB</em><span class="optional">[</span>, <em>distance=euclidean</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#nearest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Experimental. For each <a class="reference internal" href="glossary.html#term-fnode"><span class="xref std std-term">fnode</span></a> from <code class="docutils literal"><span class="pre">typeCallA</span></code>, find the closest
+node from <code class="docutils literal"><span class="pre">typeCallB</span></code>, and attach it as a note. The note is attached to
+the type specified by the RHS, defaulting to the type of <code class="docutils literal"><span class="pre">typeCallA</span></code>. If
+no nodes are emitted from <code class="docutils literal"><span class="pre">typeCallB</span></code>, do nothing.</p>
+<p>For example...</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">nearest</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The score of the <code class="docutils literal"><span class="pre">typeCallA</span></code> can be added to the new type&#8217;s score by using
+<code class="xref js js-func docutils literal"><span class="pre">conserveScore()</span></code> (though this routine has since been removed):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rule</span><span class="p">(</span><span class="n">nearest</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)),</span>
+     <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;imageWithPrice&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">conserveScore</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Caveats: <code class="docutils literal"><span class="pre">nearest</span></code> supports only simple <code class="docutils literal"><span class="pre">type</span></code> calls as arguments <code class="docutils literal"><span class="pre">a</span></code>
+and <code class="docutils literal"><span class="pre">b</span></code> for now.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
+<li><strong>distance</strong> (<em>function</em>) &#8211; A function that takes 2 fnodes and returns a numerical distance between them. Included options are <a class="reference internal" href="clustering.html#distance" title="distance"><code class="xref js js-func docutils literal"><span class="pre">distance()</span></code></a>, which is a weighted topological distance, and <a class="reference internal" href="clustering.html#euclidean" title="euclidean"><code class="xref js js-func docutils literal"><span class="pre">euclidean()</span></code></a>, which is a spatial distance.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="when">
+<code class="descname">when</code><span class="sig-paren">(</span><em>predicate</em><span class="sig-paren">)</span><a class="headerlink" href="#when" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prune nodes from consideration early in run execution, before scoring is
+done.</p>
+<p>Reserve this for where you are sure it is always correct or when
+performance demands it. It is generally preferable to use <a class="reference internal" href="#score" title="score"><code class="xref js js-func docutils literal"><span class="pre">score()</span></code></a>
+and let the <a class="reference internal" href="training.html"><span class="doc">trainer</span></a> determine the relative significance
+of each rule. Human intuition as to what is important is often wrong:
+for example, one might assume that a music player website would include
+the word &#8220;play&#8221;, but this does not hold once you include sites in other
+languages.</p>
+<p>Can be chained after <a class="reference internal" href="#type" title="type"><code class="xref js js-func docutils literal"><span class="pre">type()</span></code></a> or <a class="reference internal" href="#dom" title="dom"><code class="xref js js-func docutils literal"><span class="pre">dom()</span></code></a>.</p>
+<p>Example: <code class="docutils literal"><span class="pre">dom('p').when(isVisible)</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
+<li><strong>predicate</strong> (<em>function</em>) &#8211; Accepts a fnode and returns a boolean</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="right-hand-sides">
+<h3>Right-hand Sides<a class="headerlink" href="#right-hand-sides" title="Permalink to this headline">¶</a></h3>
+<p>A right-hand side takes the nodes chosen by the left-hand side and mutates them. Spelling-wise, a RHS is a strung-together series of calls like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;smoo&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">props</span><span class="p">(</span><span class="n">someCallback</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="s1">&#39;whee&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To facilitate factoring up repetition in right-hand sides, calls layer together like sheets of transparent acetate: if there are repeats, as with <code class="docutils literal"><span class="pre">type</span></code> in the above example, the rightmost takes precedence and the left becomes useless. Similarly, if <a class="reference internal" href="#props" title="props"><code class="xref js js-func docutils literal"><span class="pre">props()</span></code></a>, which can return multiple properties of a fact (element, note, score, and type), is missing any of these properties, we continue searching to the left for anything that provides them (excepting other <a class="reference internal" href="#props" title="props"><code class="xref js js-func docutils literal"><span class="pre">props()</span></code></a> calls—if you want that, write a combinator, and use it to combine the 2 functions you want)). To prevent this, return all properties explicitly from your props callback, even if they are no-ops (like <code class="docutils literal"><span class="pre">{score:</span> <span class="pre">1,</span> <span class="pre">note:</span> <span class="pre">undefined,</span> <span class="pre">type:</span> <span class="pre">undefined}</span></code>). Aside from this layering precedence, the order of calls does not matter.</p>
+<p>A good practice is to use more declarative calls—<a class="reference internal" href="#score" title="score"><code class="xref js js-func docutils literal"><span class="pre">score()</span></code></a>, <a class="reference internal" href="#note" title="note"><code class="xref js js-func docutils literal"><span class="pre">note()</span></code></a>, and <a class="reference internal" href="#type" title="type"><code class="xref js js-func docutils literal"><span class="pre">type()</span></code></a>—as much as possible and save <a class="reference internal" href="#props" title="props"><code class="xref js js-func docutils literal"><span class="pre">props()</span></code></a> for when you need it. The query planner can get more out of the more specialized calls without you having to tack on verbose hints like <a class="reference internal" href="#atMost" title="atMost"><code class="xref js js-func docutils literal"><span class="pre">atMost()</span></code></a> or <a class="reference internal" href="#typeIn" title="typeIn"><code class="xref js js-func docutils literal"><span class="pre">typeIn()</span></code></a>.</p>
+<dl class="function">
+<dt id="atMost">
+<code class="descname">atMost</code><span class="sig-paren">(</span><em>score</em><span class="sig-paren">)</span><a class="headerlink" href="#atMost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare that the maximum returned subscore is such and such,
+which helps the optimizer plan efficiently. This doesn&#8217;t force it to be
+true; it merely throws an error at runtime if it isn&#8217;t. To lift an
+<code class="docutils literal"><span class="pre">atMost</span></code> constraint, call <code class="docutils literal"><span class="pre">atMost()</span></code> (with no args). The reason
+<code class="docutils literal"><span class="pre">atMost</span></code> and <code class="docutils literal"><span class="pre">typeIn</span></code> apply until explicitly cleared is so that, if
+someone used them for safety reasons on a lexically distant rule you are
+extending, you won&#8217;t stomp on their constraint and break their
+invariants accidentally.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="props">
+<code class="descname">props</code><span class="sig-paren">(</span><em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#props" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine any of type, note, score, and element using a callback. This
+overrides any previous call to <cite>props</cite> and, depending on what
+properties of the callback&#8217;s return value are filled out, may override
+the effects of other previous calls as well.</p>
+<p>The callback should return...</p>
+<ul class="simple">
+<li>An optional <a class="reference internal" href="glossary.html#term-subscore"><span class="xref std std-term">subscore</span></a></li>
+<li>A type (required on <code class="docutils literal"><span class="pre">dom(...)</span></code> rules, defaulting to the input one on
+<code class="docutils literal"><span class="pre">type(...)</span></code> rules)</li>
+<li>Optional notes</li>
+<li>An element, defaulting to the input one. Overriding the default
+enables a callback to walk around the tree and say things about nodes
+other than the input one.</li>
+</ul>
+<p>For example...</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">fnode</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[{</span><span class="nx">score</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+             <span class="nx">element</span><span class="o">:</span> <span class="nx">fnode</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span>  <span class="c1">// unnecessary, since this is the default</span>
+             <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;texty&#39;</span><span class="p">,</span>
+             <span class="nx">note</span><span class="o">:</span> <span class="p">{</span><span class="nx">suspicious</span><span class="o">:</span> <span class="kc">true</span><span class="p">}}];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you use <code class="docutils literal"><span class="pre">props</span></code>, Fathom cannot look inside your callback to see what type you are emitting, so you must declare your output types with <a class="reference internal" href="#typeIn" title="typeIn"><code class="xref js js-func docutils literal"><span class="pre">typeIn()</span></code></a> or set a single static type with <code class="docutils literal"><span class="pre">type</span></code>. Fathom will complain if you don&#8217;t. (You can still opt not to return any type if the node turns out not to be a good match, even if you declare a <a class="reference internal" href="#typeIn" title="typeIn"><code class="xref js js-func docutils literal"><span class="pre">typeIn()</span></code></a>.)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="note">
+<code class="descname">note</code><span class="sig-paren">(</span><em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whatever the callback returns (even <code class="docutils literal"><span class="pre">undefined</span></code>) becomes the note of
+the fact. This overrides any previous call to <code class="docutils literal"><span class="pre">note</span></code>.</p>
+<p>Since every node can have multiple, independent notes (one for each type), this applies to the type explicitly set by the RHS or, if none, to the type named by the <cite>type</cite> call on the LHS. If the LHS has none because it&#8217;s a <cite>dom(...)</cite> LHS, an error is raised.</p>
+<p>When you query for fnodes of a certain type, you can expect to find notes of any form you specified on any RHS with that type. If no note is specified, it will be undefined. However, if two RHSs emits a given type, one adding a note and the other not adding one (or adding an undefined one), the meaningful note overrides the undefined one. This allows elaboration on a RHS&#8217;s score (for example) without needing to repeat note logic.</p>
+<p>Indeed, <code class="docutils literal"><span class="pre">undefined</span></code> is not considered a note. So, though notes cannot in general be overwritten, a note that is <code class="docutils literal"><span class="pre">undefined</span></code> can. Symmetrically, an <code class="docutils literal"><span class="pre">undefined</span></code> returned from a <a class="reference internal" href="#note" title="note"><code class="xref js js-func docutils literal"><span class="pre">note()</span></code></a> or <a class="reference internal" href="#props" title="props"><code class="xref js js-func docutils literal"><span class="pre">props()</span></code></a> or the like will quietly decline to overwrite an existing defined note, where any other value would cause an error. Rationale: letting <code class="docutils literal"><span class="pre">undefined</span></code> be a valid note value would mean you couldn&#8217;t shadow a leftward note in a RHS without introducing a new singleton value to serve as a &#8220;no value&#8221; flag. It&#8217;s not worth the complexity and the potential differences between the (internal) fact and fnode note value semantics.</p>
+<p>Best practice: any rule adding a type should apply the same note. If only one rule of several type-foo-emitting ones did, it should be made to emit a different type instead so downstream rules can explicitly state that they require the note to be there. Otherwise, there is nothing to guarantee the note-adding rule will run before the note-needing one.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="out">
+<code class="descname">out</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expose the output of this rule&#8217;s LHS as a &#8220;final result&#8221; to the surrounding
+program. It will be available by calling <code class="xref js js-func docutils literal"><span class="pre">get()</span></code> on the
+ruleset and passing the key. You can run each node through a callback
+function first by adding <a class="reference internal" href="#through" title="through"><code class="xref js js-func docutils literal"><span class="pre">through()</span></code></a>, or you can run the entire set of
+nodes through a callback function by adding <a class="reference internal" href="#allThrough" title="allThrough"><code class="xref js js-func docutils literal"><span class="pre">allThrough()</span></code></a>.</p>
+<p>If you are not using <code class="docutils literal"><span class="pre">through()</span></code> or <code class="docutils literal"><span class="pre">allThrough()</span></code>, you can omit the call to <code class="docutils literal"><span class="pre">out()</span></code> and simply use specify the key as the RHS of the rule. For example: <code class="docutils literal"><span class="pre">rule(type('titley').max(),</span> <span class="pre">out('title'))</span></code> can be written as <code class="docutils literal"><span class="pre">rule(type('titley').max(),</span> <span class="pre">'title')</span></code>.</p>
+<dl class="function">
+<dt id="through">
+<code class="descname">through</code><span class="sig-paren">(</span><em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#through" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append <code class="docutils literal"><span class="pre">.through</span></code> to <a class="reference internal" href="#out" title="out"><code class="xref js js-func docutils literal"><span class="pre">out()</span></code></a> to run each <a class="reference internal" href="glossary.html#term-fnode"><span class="xref std std-term">fnode</span></a> emitted
+from the LHS through an arbitrary function before returning it to the
+containing program. Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">out</span><span class="p">(</span><span class="s1">&#39;titleLengths&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">through</span><span class="p">(</span><span class="n">fnode</span> <span class="o">=&gt;</span> <span class="n">fnode</span><span class="o">.</span><span class="n">noteFor</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="allThrough">
+<code class="descname">allThrough</code><span class="sig-paren">(</span><em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#allThrough" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append <code class="docutils literal"><span class="pre">.allThrough</span></code> to <a class="reference internal" href="#out" title="out"><code class="xref js js-func docutils literal"><span class="pre">out()</span></code></a> to run the entire iterable of
+emitted <a class="reference internal" href="glossary.html#term-fnode"><span class="xref std std-term">fnodes</span></a> through an arbitrary function before
+returning them to the containing program. Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">out</span><span class="p">(</span><span class="s1">&#39;sortedTitles&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">allThrough</span><span class="p">(</span><span class="n">domSort</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="score">
+<code class="descname">score</code><span class="sig-paren">(</span><em>scoreOrCallback</em><span class="sig-paren">)</span><a class="headerlink" href="#score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Affect the confidence with which the input node should be considered a
+member of a type.</p>
+<p>The parameter is generally between 0 and 1 (inclusive), with 0 meaning
+the node does not have the &#8220;smell&#8221; this rule checks for and 1 meaning it
+does. The range between 0 and 1 is available to represent &#8220;fuzzy&#8221;
+confidences. If you have an unbounded range to compress down to [0, 1],
+consider using <a class="reference internal" href="utilities.html#sigmoid" title="sigmoid"><code class="xref js js-func docutils literal"><span class="pre">sigmoid()</span></code></a> or a scaling thereof.</p>
+<p>Since every node can have multiple, independent scores (one for each
+type), this applies to the type explicitly set by the RHS or, if none,
+to the type named by the <code class="docutils literal"><span class="pre">type</span></code> call on the LHS. If the LHS has none
+because it&#8217;s a <code class="docutils literal"><span class="pre">dom(...)</span></code> LHS, an error is raised.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
+<li><strong>scoreOrCallback</strong> (<em>number|function</em>) &#8211; Can either be a static number, generally 0 to 1 inclusive, or else a callback which takes the fnode and returns such a number. If the callback returns a boolean, it is cast to a number.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="type">
+<code class="descname">type</code><span class="sig-paren">(</span><em>theType</em><span class="sig-paren">)</span><a class="headerlink" href="#type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the type applied to fnodes processed by this RHS.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="typeIn">
+<code class="descname">typeIn</code><span class="sig-paren">(</span><em>type</em><span class="optional">[</span>, <em>type</em>, <em>...</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#typeIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constrain this rule to emit 1 of a set of given types. Pass no args to lift
+a previous <code class="docutils literal"><span class="pre">typeIn</span></code> constraint, as you might do when basing a LHS on a
+common value to factor out repetition.</p>
+<p><code class="docutils literal"><span class="pre">typeIn</span></code> is mostly a hint for the query planner when you&#8217;re emitting types
+dynamically from <code class="docutils literal"><span class="pre">props</span></code> calls—in fact, an error will be raised if
+<code class="docutils literal"><span class="pre">props</span></code> is used without a <code class="docutils literal"><span class="pre">typeIn</span></code> or <code class="docutils literal"><span class="pre">type</span></code> to constrain it—but it
+also checks conformance at runtime to ensure validity.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="clustering.html" class="btn btn-neutral float-right" title="Clustering" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="training.html" class="btn btn-neutral" title="Training" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2019, Mozilla Foundation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basic Use &mdash; Fathom 3.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/tweaks.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Fathom 3.1 documentation" href="index.html"/>
+        <link rel="next" title="Training" href="training.html"/>
+        <link rel="prev" title="Introduction" href="intro.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Fathom
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basic Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#where-it-works">Where It Works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-language">The Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rules-sides-and-flows">Rules, Sides, and Flows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scores-and-training">Scores and Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pulling-out-answers">Pulling Out Answers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="training.html">Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ruleset.html">Rule and Ruleset Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clustering.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fnodes.html">Fnode Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities.html">Utility Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">Version History</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Fathom</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Basic Use</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/using.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="basic-use">
+<h1>Basic Use<a class="headerlink" href="#basic-use" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="where-it-works">
+<h2>Where It Works<a class="headerlink" href="#where-it-works" title="Permalink to this headline">¶</a></h2>
+<p>Fathom is a JavaScript framework that works against the DOM API, so you can use it server-side with <code class="docutils literal"><span class="pre">jsdom</span></code> (which the test harness uses) or another implementation, or you can embed it in a browser and pass it a native DOM. You can also pass in a subtree of a DOM to operate on a partial page.</p>
+<p>To use it in a <a class="reference external" href="https://nodejs.org/en/">node.js</a> project, add <code class="docutils literal"><span class="pre">fathom-web</span></code> to your package.json file as a dependency:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="s2">&quot;dependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
+   <span class="s2">&quot;fathom-web&quot;</span><span class="o">:</span> <span class="s2">&quot;^2.1.0&quot;</span>
+<span class="p">},</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>Run <code class="docutils literal"><span class="pre">npm</span> <span class="pre">install</span></code> to download any install Fathom, and then import the symbols you need:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="p">{</span><span class="nx">rule</span><span class="p">,</span> <span class="nx">ruleset</span><span class="p">,</span> <span class="nx">dom</span><span class="p">,</span> <span class="nx">out</span><span class="p">,</span> <span class="nx">and</span><span class="p">,</span> <span class="nx">atMost</span><span class="p">,</span> <span class="nx">max</span><span class="p">,</span> <span class="nx">note</span><span class="p">,</span> <span class="nx">props</span><span class="p">,</span> <span class="nx">score</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">typeIn</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fathom-web&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>All the public symbols, aside from the <a class="reference internal" href="utilities.html"><span class="doc">Utility Functions</span></a>, are in the top-level fathom-web package.</p>
+</div>
+<div class="section" id="the-language">
+<h2>The Language<a class="headerlink" href="#the-language" title="Permalink to this headline">¶</a></h2>
+<p>Think of Fathom as a tiny programming language that recognizes the significant parts of DOM trees by means of its programs, Fathom rulesets. A ruleset is an unordered bag of rules, each of which takes in DOM nodes and annotates them with scores, types, and notes to influence future rules. At the end of the chain of rules, out pop one or more pieces of output—typically high-scoring nodes of certain types—to inform the surrounding imperative program.</p>
+<p>This simple ruleset finds DOM nodes that could contain a useful page title and scores them according to how likely that is:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">rules</span> <span class="o">=</span> <span class="nx">ruleset</span><span class="p">([</span>
+        <span class="c1">// Put all &lt;title&gt; tags in the bucket of candidate titles.</span>
+        <span class="nx">rule</span><span class="p">(</span><span class="nx">dom</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">),</span> <span class="nx">type</span><span class="p">(</span><span class="s1">&#39;titley&#39;</span><span class="p">).</span><span class="nx">score</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span>
+
+        <span class="c1">// Tag any OpenGraph meta tag as title-ish as well:</span>
+        <span class="nx">rule</span><span class="p">(</span><span class="nx">dom</span><span class="p">(</span><span class="s1">&#39;meta[property=&quot;og:title&quot;]&#39;</span><span class="p">),</span> <span class="nx">type</span><span class="p">(</span><span class="s1">&#39;titley&#39;</span><span class="p">).</span><span class="nx">score</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span>
+
+        <span class="c1">// Take all title-ish candidates, and punish them to the degree they</span>
+        <span class="c1">// contain navigational claptrap like colons or dashes. Compress the</span>
+        <span class="c1">// number into the standard 0..1 range using a sigmoid function.</span>
+        <span class="nx">rule</span><span class="p">(</span><span class="nx">type</span><span class="p">(</span><span class="s1">&#39;titley&#39;</span><span class="p">),</span> <span class="nx">score</span><span class="p">(</span><span class="nx">fnode</span> <span class="p">=&gt;</span> <span class="nx">sigmoid</span><span class="p">(</span><span class="nx">numberOfColonsOrDashes</span><span class="p">(</span><span class="nx">fnode</span><span class="p">.</span><span class="nx">element</span><span class="p">))),</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;colons&#39;</span><span class="p">}),</span>
+
+        <span class="c1">// Add a rule for title length, intuiting that very long titles may not</span>
+        <span class="c1">// be titles at all. Again, limit the range to 0..1 using a sigmoid. The</span>
+        <span class="c1">// resulting score means &quot;the probability that the title is &#39;long&#39;&quot;, for</span>
+        <span class="c1">// some definition of &quot;long&quot; that the optimizer will later determine by</span>
+        <span class="c1">// adding a scaling coefficient.</span>
+        <span class="nx">rule</span><span class="p">(</span><span class="nx">type</span><span class="p">(</span><span class="s1">&#39;titley&#39;</span><span class="p">),</span> <span class="nx">score</span><span class="p">(</span><span class="nx">fnode</span> <span class="p">=&gt;</span> <span class="nx">sigmoid</span><span class="p">(</span><span class="nx">fnode</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">innerText</span><span class="p">.</span><span class="nx">length</span><span class="p">)),</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;length&#39;</span><span class="p">}),</span>
+
+        <span class="c1">// Offer the max-scoring title-ish node under the output key &quot;title&quot;.</span>
+        <span class="c1">// The score on that node will represent the probability, informed by a</span>
+        <span class="c1">// corpus of training pages, that the node is, indeed, the proper page</span>
+        <span class="c1">// title.</span>
+        <span class="nx">rule</span><span class="p">(</span><span class="nx">type</span><span class="p">(</span><span class="s1">&#39;titley&#39;</span><span class="p">).</span><span class="nx">max</span><span class="p">(),</span> <span class="s1">&#39;title&#39;</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="p">[[</span><span class="s1">&#39;colons&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3606211543083191</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;length&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.6875461339950562</span><span class="p">]],</span>  <span class="c1">// coefficients from training</span>
+    <span class="p">[</span><span class="s1">&#39;titley&#39;</span><span class="p">,</span> <span class="mf">3.660104751586914</span><span class="p">]</span>  <span class="c1">// biases from training</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>See below for a full definition of <cite>type</cite>, <cite>score</cite>, and the rest of the Fathom language.</p>
+</div>
+<div class="section" id="rules-sides-and-flows">
+<h2>Rules, Sides, and Flows<a class="headerlink" href="#rules-sides-and-flows" title="Permalink to this headline">¶</a></h2>
+<p>Fathom is a <a class="reference external" href="https://en.wikipedia.org/wiki/Dataflow_programming">dataflow language</a>. Each rule is shaped like <code class="docutils literal"><span class="pre">rule(left-hand</span> <span class="pre">side,</span> <span class="pre">right-hand</span> <span class="pre">side)</span></code>. The <em>left-hand side</em> (LHS) pulls in one or more DOM nodes as input: either ones that match a certain CSS selector (<a class="reference internal" href="ruleset.html#dom" title="dom"><code class="xref js js-func docutils literal"><span class="pre">dom()</span></code></a>) or ones tagged with a certain type by other rules (<a class="reference internal" href="ruleset.html#type" title="type"><code class="xref js js-func docutils literal"><span class="pre">type()</span></code></a>). The <em>right-hand side</em> (RHS) then decides what to do with those nodes:</p>
+<ul class="simple">
+<li>Adding a score. This is the most common action; it drives Fathom&#8217;s recognition of entities.</li>
+<li>Assigning an additional type</li>
+<li>Scribbling a note on it. Notes let you avoid repeated computation and attach additional information to output nodes.</li>
+<li>Or some combination thereof</li>
+</ul>
+<p>Envision the rule as a pipeline, with the DOM flowing in one end, nodes being picked and passed along to RHSs which twiddle them, and then finally falling out right side, where they might flow into other rules whose LHSs pick them up. It&#8217;s a slithering sort of flow.</p>
+<p>This rule, which takes in <a class="reference internal" href="glossary.html#term-fnode"><span class="xref std std-term">fnodes</span></a> that have previously been identified as text containers and adds a word-count annotation...</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rule</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;textContainer&#39;</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;countedWords&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">note</span><span class="p">(</span><span class="n">fnode</span> <span class="o">=&gt;</span> <span class="n">fnode</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">textContent</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="o">/</span>\<span class="n">s</span><span class="o">+/</span><span class="p">)</span><span class="o">.</span><span class="n">length</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>...can be thought of as...</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>textContainer fnodes emitted        assign &quot;countedWords&quot; type
+     from other rules          -&gt;        and a word count        -&gt;   changed nodes --\
+                                                                                      |
+ ____________________________________________________________________________________ /
+/
+|
+\-&gt;  other rules&#39; LHSs         -&gt;   ...                          -&gt;   ...          --&gt;  ...
+</pre></div>
+</div>
+<p>Remember that Fathom&#8217;s rulesets are unordered, so any rule&#8217;s output can flow into any other rule, not just ones that happen to come lexically after it.</p>
+</div>
+<div class="section" id="scores-and-training">
+<h2>Scores and Training<a class="headerlink" href="#scores-and-training" title="Permalink to this headline">¶</a></h2>
+<p>Once you&#8217;ve written a few scoring rules, it&#8217;s time to run the trainer. This computes optimal weighting coefficients and biases for them, which let the ruleset compute accurate confidences when it is run. See the separate in-depth treatment of <a class="reference internal" href="training.html"><span class="doc">Training</span></a>.</p>
+</div>
+<div class="section" id="pulling-out-answers">
+<h2>Pulling Out Answers<a class="headerlink" href="#pulling-out-answers" title="Permalink to this headline">¶</a></h2>
+<p>Once the ruleset is written and trained, you can run a DOM tree through it:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">JSDOM</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;jsdom&#39;</span><span class="p">).</span><span class="nx">JSDOM</span><span class="p">;</span>  <span class="c1">// jsdom v10 and up</span>
+<span class="kr">const</span> <span class="nx">dom</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">JSDOM</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&lt;head&gt;...&lt;/html&gt;&quot;</span><span class="p">).</span><span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">;</span>
+<span class="c1">// Tell the ruleset which DOM to run against, yielding a factbase about the document:</span>
+<span class="kr">const</span> <span class="nx">facts</span> <span class="o">=</span> <span class="nx">rules</span><span class="p">.</span><span class="nx">against</span><span class="p">(</span><span class="nx">dom</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>After running a tree or subtree through, pull the answers out of the factbase: in this case, we want the note containing the max-scoring title, which the ruleset conveniently stores under the &#8220;title&#8221; output key:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">bestTitleFnode</span> <span class="o">=</span> <span class="nx">facts</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>A more developed ruleset would expose the title itself using <a class="reference internal" href="ruleset.html#through" title="through"><code class="xref js js-func docutils literal"><span class="pre">through()</span></code></a>. But in this case, you would pull it out manually using the <a class="reference internal" href="fnodes.html"><span class="doc">methods on fnodes</span></a>.</p>
+<p>If the ruleset doesn&#8217;t anticipate the output you want, you can ask for it more explicitly by passing a query, in the form of a full LHS, to <code class="xref js js-func docutils literal"><span class="pre">get()</span></code>. For example, if you simply want all the title-ish things so you can do further computation on them...</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">allTitleFnodes</span> <span class="o">=</span> <span class="nx">facts</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">type</span><span class="p">(</span><span class="s1">&#39;titley&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Or if you have a reference to a DOM element from elsewhere in your program, you can look up the scores, types, and notes Fathom attached to it:</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">fnode</span> <span class="o">=</span> <span class="nx">facts</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">dom</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;aTitle&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>jsdom likes to load external resources, like CSS and JS, referenced from the HTML you feed it. This is, of course, slow, a security leak, and unhelpful for our purposes. This longer spelling will keep it from doing that:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">{</span><span class="n">jsdom</span><span class="p">}</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;jsdom/lib/old-api&#39;</span><span class="p">);</span>
+<span class="n">const</span> <span class="n">dom</span> <span class="o">=</span> <span class="n">jsdom</span><span class="o">.</span><span class="n">jsdom</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&lt;head&gt;...&lt;/html&gt;&quot;</span><span class="p">,</span>
+                        <span class="p">{</span><span class="n">features</span><span class="p">:</span> <span class="p">{</span><span class="n">ProcessExternalResources</span><span class="p">:</span> <span class="n">false</span><span class="p">}});</span>
+</pre></div>
+</div>
+<p class="last">We&#8217;re targeting jsdom version 10 and up here: particularly, its <a class="reference external" href="https://github.com/tmpvar/jsdom/blob/master/lib/old-api.md">old API</a>, which is so far the only one that lets you control resource loading.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="training.html" class="btn btn-neutral float-right" title="Training" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017-2019, Mozilla Foundation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
